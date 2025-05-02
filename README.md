@@ -64,3 +64,47 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+# API de Empréstimos
+
+Esta é uma API para simulação de empréstimos, onde o usuário pode realizar simulações de acordo com valor do empréstimo, instituições financeiras, convênios e número de parcelas. A API também permite a documentação via Swagger.
+
+## Tecnologias utilizadas
+
+- **PHP** 8.0 ou superior
+- **Laravel** 8.x
+- **Swagger** para documentação da API
+- **L5-Swagger** para integração do Swagger com o Laravel
+
+## Pré-requisitos
+
+Antes de rodar o projeto, verifique se você tem as seguintes ferramentas instaladas:
+
+- **PHP** 8.0 ou superior
+- **Composer** - para gerenciar dependências PHP
+- **Node.js** (opcional para compilar assets front-end)
+- **MySQL** ou **SQLite** (caso o projeto precise de um banco de dados)
+
+## Configuração do ambiente
+
+Execute o seguinte comando para instalar as dependências do PHP através do Composer:
+- composer install
+
+Copie o arquivo .env.example para .env:
+- cp .env.example .env
+
+Gere a chave da aplicação:
+- php artisan key:generate
+
+## Rodando a API
+
+Execute o comando para rodar o servidor localmente:
+- php artisan serve
+
+O servidor estará disponível em http://localhost:8000
+
+A documentação da API estará disponível em:
+http://localhost:8000/documentation
+
+
