@@ -1,0 +1,226 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentação da API de Simulação de Empréstimos",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Local"
+        }
+    ],
+    "paths": {
+        "/api/convenios": {
+            "get": {
+                "tags": [
+                    "Convênios"
+                ],
+                "summary": "Lista todos os convênios disponíveis",
+                "operationId": "3280a9c0d04e2b85ac8c9a21946833b2",
+                "responses": {
+                    "200": {
+                        "description": "Lista de convênios",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "chave": {
+                                                "type": "string",
+                                                "example": "INSS"
+                                            },
+                                            "valor": {
+                                                "type": "string",
+                                                "example": "INSS"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao processar os dados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "erro": {
+                                            "type": "string",
+                                            "example": "Erro ao decodificar JSON"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/instituicoes": {
+            "get": {
+                "tags": [
+                    "Instituições"
+                ],
+                "summary": "Lista todas as instituições",
+                "operationId": "8d1acdb42e538a459821227b8233350b",
+                "responses": {
+                    "200": {
+                        "description": "Lista de instituições",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "chave": {
+                                                "type": "string",
+                                                "example": "PAN"
+                                            },
+                                            "valor": {
+                                                "type": "string",
+                                                "example": "Pan"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/simular": {
+            "post": {
+                "tags": [
+                    "Simulação"
+                ],
+                "summary": "Simula o empréstimo com base nos filtros",
+                "operationId": "8c821d5e7f60aa425fbb795edd7fcaf0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "valor_emprestimo"
+                                ],
+                                "properties": {
+                                    "valor_emprestimo": {
+                                        "description": "Valor do empréstimo a ser simulado",
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": "1000"
+                                    },
+                                    "instituicoes": {
+                                        "description": "Lista de instituições filtradas",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "Banco A"
+                                        }
+                                    },
+                                    "convenios": {
+                                        "description": "Lista de convênios filtrados",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "INSS"
+                                        }
+                                    },
+                                    "parcela": {
+                                        "description": "Número de parcelas do empréstimo",
+                                        "type": "number",
+                                        "format": "int32",
+                                        "example": "12"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Simulação realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "instituicao1": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "convenio": {
+                                                        "type": "string",
+                                                        "example": "INSS"
+                                                    },
+                                                    "parcelas": {
+                                                        "type": "integer",
+                                                        "example": "12"
+                                                    },
+                                                    "valor_parcela": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": "150.25"
+                                                    },
+                                                    "taxaJuros": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": "1.25"
+                                                    },
+                                                    "coeficiente": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": "0.15"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "erro": {
+                                            "type": "string",
+                                            "example": "Erro ao processar os dados"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Convênios",
+            "description": "Convênios"
+        },
+        {
+            "name": "Instituições",
+            "description": "Instituições"
+        },
+        {
+            "name": "Simulação",
+            "description": "Simulação"
+        }
+    ]
+}
