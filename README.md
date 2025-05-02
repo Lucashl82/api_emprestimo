@@ -83,8 +83,6 @@ Antes de rodar o projeto, verifique se você tem as seguintes ferramentas instal
 
 - **PHP** 8.0 ou superior
 - **Composer** - para gerenciar dependências PHP
-- **Node.js** (opcional para compilar assets front-end)
-- **MySQL** ou **SQLite** (caso o projeto precise de um banco de dados)
 
 ## Configuração do ambiente
 
